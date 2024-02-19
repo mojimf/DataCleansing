@@ -1,0 +1,111 @@
+Sub Macro8()
+'
+' Macro8 Macro
+'
+
+'
+    Dim filePath As String
+    Dim fs As Object
+    
+
+    filePath = "\\.......gy\Calls.csv"
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    If fs.FileExists(filePath) Then
+        fs.DeleteFile filePath
+    filePath = "\\.....gy\Social.csv"
+        fs.DeleteFile filePath
+    End If
+
+    Workbooks.Open Filename:= _
+        "https://....../Weekly%20Report.xlsx" _
+        , UpdateLinks:=0
+    Workbooks.Add
+    ActiveWorkbook.SaveAs Filename:= _
+        "\\u....\Calls.csv", FileFormat _
+        :=xlCSV, CreateBackup:=False
+    Windows("Weekly Report.xlsx").Activate
+    Range("C3:J3").Select
+    Selection.Copy
+    Windows("Calls.csv").Activate
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("B1:H1").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("A2").Select
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    Range("B1:H1").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    Windows("Weekly Report.xlsx").Activate
+    Range("C9:J9").Select
+    Selection.Copy
+    Windows("Calls.csv").Activate
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("C1:I1").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("B2").Select
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    Range("C1:I1").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    Rows("1:1").Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "Week"
+    Range("B1").Select
+    ActiveCell.FormulaR1C1 = "Call Into Care"
+    Range("B2").Select
+    ActiveWorkbook.Save
+    ActiveWindow.Close
+    Workbooks.Add
+    ActiveWorkbook.SaveAs Filename:= _
+        "\\......gy\Social.csv", FileFormat _
+        :=xlCSV, CreateBackup:=False
+        
+    Windows("Weekly Report.xlsx").Activate
+    Range("C3:J3").Select
+    Selection.Copy
+    Windows("Social.csv").Activate
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("B1:H1").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("A2").Select
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    Range("B1:H1").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    Windows("Weekly Report.xlsx").Activate
+    Range("C10:J10").Select
+    Selection.Copy
+    Windows("Social.csv").Activate
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("C1:I1").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("B2").Select
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    Range("C1:I1").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    Rows("1:1").Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "Week"
+    Range("B1").Select
+    ActiveCell.FormulaR1C1 = "Social"
+    Range("B2").Select
+    ActiveWorkbook.Save
+    ActiveWindow.Close
+    Windows("Weekly Report.xlsx").Activate
+    ActiveWindow.Close SaveChanges:=False
+End Sub
